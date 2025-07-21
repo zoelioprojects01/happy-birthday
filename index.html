@@ -3,27 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Happy Birthday Bestie 🎉</title>
+  <title>Happy Birthday Vidya 🎉</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-  <!-- Optional Background Music -->
-  <audio autoplay loop>
+  <audio id="birthdayMusic" loop>
     <source src="assets/music.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
   </audio>
+
+  <button onclick="toggleAudio()" id="audioControl">Play Music 🎵</button>
 
   <h1 class="title">🎂 Happy Birthday, Vidya! 💖</h1>
 
   <div class="gallery">
-    <img src="assets/photo1.jpg" class="photo p1" />
-    <img src="assets/photo2.jpg" class="photo p2" />
-    <img src="assets/photo3.jpg" class="photo p3" />
-    <img src="assets/photo4.jpg" class="photo p4" />
-    <img src="assets/photo5.jpg" class="photo p5" />
-    <img src="assets/photo6.jpg" class="photo p6" />
-    <img src="assets/photo7.jpg" class="photo p7" />
-    <img src="assets/photo8.jpg" class="photo p8" />
+    <img src="assets/photo1.jpg" class="photo p1" alt="Photo 1 of Vidya" />
+    <img src="assets/photo2.jpg" class="photo p2" alt="Photo 2 of Vidya" />
+    <img src="assets/photo3.jpg" class="photo p3" alt="Photo 3 of Vidya" />
+    <img src="assets/photo4.jpg" class="photo p4" alt="Photo 4 of Vidya" />
+    <img src="assets/photo5.jpg" class="photo p5" alt="Photo 5 of Vidya" />
+    <img src="assets/photo6.jpg" class="photo p6" alt="Photo 6 of Vidya" />
+    <img src="assets/photo7.jpg" class="photo p7" alt="Photo 7 of Vidya" />
+    <img src="assets/photo8.jpg" class="photo p8" alt="Photo 8 of Vidya" />
 
     <div class="gift" onclick="openGift()">
       <img src="assets/gift.gif" alt="Gift Box" />
@@ -31,19 +32,19 @@
   </div>
 
   <div id="popup" class="popup">
-    <div class="popup-content">
-      <span class="close" onclick="closeGift()">&times;</span>
+    <div class="popup-content" tabindex="0">
+      <span class="close" onclick="closeGift()">×</span>
       <h2>🎉 Surprise Message 🎉</h2>
       <p>
         Hey Vidya 💖<br><br>
-  I know I’m late... but wishing someone special like you doesn't need a date on the calendar.<br><br>
-  You’re not just a friend — you’re that rare kind of person who makes life brighter just by being in it.  
-  Your energy, your smile, your voice — everything about you is just ✨ special ✨<br><br>
-  I hope your birthday was as amazing as you are. And even though this wish is late,  
-  my feelings of respect, warmth, and endless good vibes for you are always on time. 💫<br><br>
-  So here’s to your beautiful journey ahead — keep shining, keep singing, and keep being you.  
-  Happy (Belated) Birthday, Vidya! 🎂🎉💝<br><br>
-  – Your chaos partner & silent supporter 🫶
+        I know I’m late... but wishing someone special like you doesn't need a date on the calendar.<br><br>
+        You’re not just a friend — you’re that rare kind of person who makes life brighter just by being in it.  
+        Your energy, your smile, your voice — everything about you is just ✨ special ✨<br><br>
+        I hope your birthday was as amazing as you are. And even though this wish is late,  
+        my feelings of respect, warmth, and endless good vibes for you are always on time. 💫<br><br>
+        So here’s to your beautiful journey ahead — keep shining, keep singing, and keep being you.  
+        Happy (Belated) Birthday, Vidya! 🎂🎉💝<br><br>
+        – Your chaos partner & silent supporter 🫶
       </p>
     </div>
   </div>
@@ -51,9 +52,25 @@
   <script>
     function openGift() {
       document.getElementById("popup").style.display = "block";
+      document.querySelector(".popup-content").focus();
+      const audio = document.getElementById("birthdayMusic");
+      audio.play().catch(error => console.error("Audio playback failed:", error));
     }
     function closeGift() {
       document.getElementById("popup").style.display = "none";
+      const audio = document.getElementById("birthdayMusic");
+      audio.pause(); // Optional: pause audio when closing popup
+    }
+    function toggleAudio() {
+      const audio = document.getElementById("birthdayMusic");
+      const button = document.getElementById("audioControl");
+      if (audio.paused) {
+        audio.play().catch(error => console.error("Audio playback failed:", error));
+        button.textContent = "Pause Music 🎵";
+      } else {
+        audio.pause();
+        button.textContent = "Play Music 🎵";
+      }
     }
   </script>
 </body>
